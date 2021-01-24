@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Management Website | Auditor Home Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+    <div class="header">
+
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <img class="logo" src="images/logo.png" alt="logo">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="/auditorHomePage">Home</a></li>
+                        <li><a href="/addAuditPlan">Add Audit Plan</a></li>
+                        <li><a href="/viewCar">View Proposed CAR</a></li>
+                        <li><a href="/">LogOut</a></li>
+                        
+                        <!-- <li><a href="/products">Products</a></li> -->
+                    </ul>
+                </nav>    
+            </div>
+            
+        </div>
+        
+    </div>
+    <div class= "body">
+        <h1 style="text-align: center; width: 100%;">Audits</h1>
+        <table border="1" style="text-align: center; width: 100%;">
+            <tr>
+            <th>SL.</th>
+            <th>Name of Audit</th>
+            <th>Date of Audit</th>
+            <th>Department</th>
+            <th>Person</th>
+            <th>Area</th>
+            <th>NC</th>
+            </tr>
+            <% var Serial = 1 %>
+            <% allAudits.forEach((audit)=>{ %>
+            <tr>
+                <td><%= Serial %></td>
+                <td id="name<%=Serial%>" ><%= audit.name %></td>
+                <td id="date<%=Serial%>" ><%= audit.date %></td>
+                <td id="department<%=Serial%>" ><%= audit.department %></td>
+                <td id="person<%=Serial%>" ><%= audit.person %></td>
+                <td id="area<%=Serial%>" ><%= audit.area %></td>
+                <td><Button id="ncBtn<%=Serial%>" onclick="ncButtonClicked(event)">NC</Button></td>
+            </tr>
+            <% Serial++ %>
+            <% }) %>
+        </table>
+        <div id="ncFormPart" style="display: none;">
+        <h1 style="text-align: center; width: 100%;">NC Form</h1>
+    
+        <div class="form">
+            <fieldset>
+                <legend>NC Form</legend>
+                <label>Audit Name</label><br>
+                <input readonly type="text" placeholder="Audit Name" id="nc_name"><br>
+                <label>Date of Audit</label><br>
+                <input readonly type="date" placeholder="Audit Date" id="nc_date"><br>
+                <label>Department</label><br>
+                <input readonly type="text" placeholder="Audit Department" id="nc_department"><br>
+                <label>Auditor Name</label><br>
+                <input readonly type="text" placeholder="Auditor Name" id="nc_auditor_name"><br>
+                <label>Area</label><br>
+                <input readonly type="text" placeholder="Audit Area" id="nc_area"><br>
+                <!-- <input type="text" placeholder="Choose Responsible Person" id="audit_responsible_person"><br> -->
+                <hr>
+                <hr>
+                <br><br>
+                <label>Report Date</label><br>
+                <input autofocus type="date" placeholder="Audit Date" id="nc_report_date"><br>
+                <label>Responsible Person</label><br>
+                <select autofocus id="nc_responsible_person" name="responsiblePerson">
+                    <option value="none">Choose Responsible Person</option>
+                    <option value="Writban Alim">Writban Alim (Accounts)</option>
+                    <option value="Mayabee Tahsin">Mayabee Tahsin (Finance)</option>
+                    <option value="Abdullah Al Nayem">Abdullah Al Nayem (IT)</option>
+                    <option value="Iffat Tasnim">Iffat Tasnim (HR)</option>
+                    <option value="Muntasir Hassan">Muntasir Hassan (Production)</option>
+                </select><br><br>
+                <label>NC Type</label><br>
+                <select autofocus name="seriousness" id="nc_seriousness">
+                    <option value="node">Select NC Type</option>
+                    <option value="Minor">Minor</option>
+                    <option value="Major">Major</option>
+                </select><br><br>
+                <label>Statement</label><br>
+                <textarea id="nc_statement" wrap="soft" rows = "5" cols = "68"></textarea><br>
+                <br>
+                <button class="btn" id="add_button" onclick="ncSubmitClicked()">SUBMIT NC</button>
+
+
+            </fieldset>
+
+        </div>
+
+    </div>
+    
+
+    
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
